@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#07090d">
+  <title>Toxic — Multimodal Evidence Chat</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="toxic-dark.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand"><div class="brand-mark" aria-label="Blue Sudarshan Chakra logo"><svg class="chakra-logo" viewBox="0 0 40 40" role="img" aria-hidden="true"><circle class="chakra-disc" cx="20" cy="20" r="15.6"/><g class="chakra-teeth"><path d="M20 1.5 23 7.8 20 9.6 17 7.8Z"/><path d="M20 1.5 23 7.8 20 9.6 17 7.8Z" transform="rotate(30 20 20)"/><path d="M20 1.5 23 7.8 20 9.6 17 7.8Z" transform="rotate(60 20 20)"/><path d="M20 1.5 23 7.8 20 9.6 17 7.8Z" transform="rotate(90 20 20)"/><path d="M20 1.5 23 7.8 20 9.6 17 7.8Z" transform="rotate(120 20 20)"/><path d="M20 1.5 23 7.8 20 9.6 17 7.8Z" transform="rotate(150 20 20)"/><path d="M20 1.5 23 7.8 20 9.6 17 7.8Z" transform="rotate(180 20 20)"/><path d="M20 1.5 23 7.8 20 9.6 17 7.8Z" transform="rotate(210 20 20)"/><path d="M20 1.5 23 7.8 20 9.6 17 7.8Z" transform="rotate(240 20 20)"/><path d="M20 1.5 23 7.8 20 9.6 17 7.8Z" transform="rotate(270 20 20)"/><path d="M20 1.5 23 7.8 20 9.6 17 7.8Z" transform="rotate(300 20 20)"/><path d="M20 1.5 23 7.8 20 9.6 17 7.8Z" transform="rotate(330 20 20)"/></g><g class="chakra-spokes"><path d="M20 9.2v6.1m0 9.4v6.1M9.2 20h6.1m9.4 0h6.1M12.36 12.36l4.31 4.31m6.66 6.66 4.31 4.31m0-15.28-4.31 4.31m-6.66 6.66-4.31 4.31"/></g><circle class="chakra-hub" cx="20" cy="20" r="4.7"/><circle class="chakra-center" cx="20" cy="20" r="1.35"/></svg></div><span>toxic</span></div>
+      <button class="new-chat" id="newChat"><span>＋</span> New investigation <kbd>⌘ K</kbd></button>
+      <div class="side-label">WORKSPACE</div>
+      <button class="nav-item active"><span class="nav-icon">⌕</span> Evidence chat</button>
+      <button class="nav-item" id="sourcesNav"><span class="nav-icon">▤</span> Evidence library <span class="count" id="sourceCount">0</span></button><div class="side-label history-label" id="searchHistoryLabel" hidden>SAVED QUESTIONS</div><div class="search-history-list" id="searchHistoryList" aria-live="polite"></div>
+      <div class="side-label recent-label">RECENT</div>
+      <button class="recent-item selected" id="recentCurrent"><span class="recent-dot"></span><span id="recentTitle">Untitled investigation</span></button>
+      <div class="sidebar-bottom">
+        <div class="privacy-card"><span class="lock">◈</span><div><strong>Private by design</strong><p>Your files stay on this device.</p></div><span class="green-dot"></span></div>
+        <button class="profile"><div class="avatar">R</div><span><strong>Research workspace</strong><small>Local session</small></span><span class="more">···</span></button>
+      </div>
+    </aside>
+
+    <main class="main-area">
+      <header class="topbar"><button class="mobile-menu" id="mobileMenu" aria-label="Open menu">☰</button><div class="crumb">Workspace <span>/</span> <strong>Evidence chat</strong></div><div class="top-actions"><span class="local-badge" id="modelStatus"><i></i> CHECKING LOCAL AI</span><button class="icon-btn settings-btn" id="aiSettings" aria-label="Open answer settings" title="Settings"><span aria-hidden="true">⚙</span><span>Settings</span></button></div></header>
+
+      <section class="conversation" id="conversation">
+        <div class="welcome" id="welcome">
+          <div class="welcome-eyebrow"><span class="sparkle">✳</span> MULTIMODAL EVIDENCE INTELLIGENCE</div>
+          <h1>Know what the evidence<br><span>actually says.</span></h1>
+          <p class="welcome-copy">Upload a file and ask a question. Toxic cites useful evidence, compares conflicting claims,<br>and tells you when the information is missing or not strong enough.</p>
+          <div class="starter-grid">
+            <button class="starter" data-question="What are the main findings, and where do sources disagree?"><span class="starter-icon mint">◫</span><span><strong>Find what conflicts</strong><small>Compare claims across sources</small></span><span class="arrow">↗</span></button>
+            <button class="starter" data-question="What does the evidence say about the reported incident?"><span class="starter-icon lilac">⌕</span><span><strong>Ask across your files</strong><small>Get a cited, grounded answer</small></span><span class="arrow">↗</span></button>
+            <button class="starter" data-question="Which sources should I trust most, and why?"><span class="starter-icon peach">◎</span><span><strong>Check source reliability</strong><small>See evidence quality signals</small></span><span class="arrow">↗</span></button>
+            <button class="starter" data-question="What important details are missing from this evidence?"><span class="starter-icon blue">⌁</span><span><strong>Spot what is missing</strong><small>Know when evidence falls short</small></span><span class="arrow">↗</span></button>
+          </div>
+          <div class="upload-prompt"><span class="upload-mini">↥</span><span>Start by adding evidence</span><span class="prompt-rule"></span><span class="file-types">PDF · scanned PDFs · DOCX · CSV · XLS/XLSX · JSON · images</span></div>
+        </div>
+        <div class="messages" id="messages"></div>
+      </section>
+
+      <section class="composer-wrap" id="composerWrap">
+        <div class="attached-files" id="attachedFiles"></div>
+        <div class="composer" id="dropZone">
+          <input id="fileInput" type="file" hidden multiple accept=".pdf,.txt,.md,.csv,.tsv,.json,.docx,.xls,.xlsx,.png,.jpg,.jpeg,.webp,.tif,.tiff,application/pdf,text/plain,text/csv,application/json,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+          <button class="attach-btn" id="attachBtn" aria-label="Attach files" title="Attach evidence">＋</button>
+          <textarea id="questionInput" rows="1" placeholder="Ask anything about your evidence…"></textarea>
+          <div class="composer-tools"><span class="evidence-indicator"><i></i><span id="evidenceLabel">No evidence added</span></span><button class="send-btn" id="sendBtn" aria-label="Send question">↑</button></div>
+        </div>
+        <div class="composer-note">Evidence is analyzed in your browser. Answers may be incomplete; check sources before acting.</div>
+      </section>
+      <div class="toast" id="toast" role="status"></div>
+    </main>
+
+    <aside class="inspector" id="inspector">
+      <div class="inspector-head"><div><span class="inspector-kicker">INVESTIGATION</span><h2>Evidence map</h2></div><button class="icon-btn" id="collapseInspector" aria-label="Collapse evidence map">↗</button></div>
+      <div class="map-card">
+        <div class="map-top"><span>YOUR EVIDENCE</span><span class="live-dot"></span></div>
+        <div class="map-graphic" id="mapGraphic" role="group" aria-label="Interactive evidence map"><svg class="evidence-edges" id="mapEdges" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"></svg><div class="map-core"><span>TOXIC</span></div><div class="map-nodes" id="mapNodes"></div></div>
+        <div class="map-caption"><strong id="mapSourceCount">0 sources connected</strong><span id="mapClaimCount">Waiting for evidence</span></div>
+        <div class="map-selection" id="mapSelection" aria-live="polite"><strong id="mapSelectionTitle">No evidence loaded yet</strong><p id="mapSelectionText">Upload a document or image to create your map.</p></div>
+      </div>
+      <div class="inspector-section"><div class="section-heading"><span>ADDED SOURCES</span><button id="addSourceLink">＋ Add</button></div><div id="sourceList" class="source-list"><div class="empty-sources"><span>▤</span><strong>No sources yet</strong><p>Upload a file to start building your evidence map.</p></div></div></div>
+      <div class="inspector-section findings-section"><div class="section-heading"><span>ANALYSIS NOTES</span><span class="beta">LIVE</span></div><div class="note-row"><span class="note-icon gray">⌕</span><div><strong>Searches all uploaded files</strong><p>Local AI expands the search when wording differs.</p></div></div><div class="note-row"><span class="note-icon yellow">⚖</span><div><strong>Checks gaps and conflicts</strong><p>It looks for missing support before answering.</p></div></div><div class="note-row"><span class="note-icon green">✓</span><div><strong>Answers link to evidence</strong><p>Review each cited passage and source.</p></div></div></div>
+      <div class="inspector-footer"><span class="shield">⬡</span><span>Local-first analysis</span><span class="footer-status"><i></i> Ready</span></div>
+    </aside>
+  </div>
+  <div class="modal-backdrop" id="modalBackdrop"><div class="source-modal"><button id="closeModal" class="modal-close">×</button><span class="inspector-kicker">EVIDENCE LIBRARY</span><h2>Your sources</h2><p>Files are read on this device and stay in this browser session.</p><div id="modalSourceList" class="modal-source-list"></div><button class="modal-add" id="modalAdd">＋ Add files</button></div></div>
+  <div class="modal-backdrop" id="aiBackdrop"><div class="source-modal ai-modal"><button id="closeAiModal" class="modal-close">×</button><span class="inspector-kicker">TEACH TOXIC</span><h2>Answer preferences</h2><p>Choose how answers should sound. Toxic saves these settings in this browser.</p><label class="model-label" for="modelName">Ollama model name</label><input id="modelName" class="model-input" value="llama3.2:3b" autocomplete="off" spellcheck="false"><div class="model-help" id="modelHelp">Checking for a local Ollama model…</div><label class="model-label" for="visionModelName">Ollama vision model (for diagrams and images)</label><input id="visionModelName" class="model-input" placeholder="e.g. qwen2.5vl:7b · auto-detect if installed" autocomplete="off" spellcheck="false"><div class="model-help" id="visionHelp">Add an image-capable Ollama model to read figures, diagrams, and photos.</div><div class="preference-grid"><div><label class="model-label" for="answerDetail">Answer detail</label><select id="answerDetail" class="model-input"><option value="concise">Concise</option><option value="stepwise">Step-by-step</option><option value="detailed">Detailed</option></select></div><div><label class="model-label" for="answerAudience">Explain for</label><select id="answerAudience" class="model-input"><option value="beginner">Beginner</option><option value="general">General audience</option><option value="technical">Technical reader</option></select></div><div><label class="model-label" for="answerFormat">Format</label><select id="answerFormat" class="model-input"><option value="automatic">Choose what fits</option><option value="bullets">Bullet points</option><option value="numbered">Numbered steps</option><option value="paragraphs">Short paragraphs</option></select></div><div><label class="model-label" for="answerLanguage">Language</label><input id="answerLanguage" class="model-input" value="English" maxlength="40"></div><div><label class="model-label" for="answerTone">Answer tone</label><select id="answerTone" class="model-input"><option value="clear">Clear and simple</option><option value="friendly">Friendly</option><option value="formal">Formal</option></select></div><div><label class="model-label" for="reasoningEffort">Reasoning effort</label><select id="reasoningEffort" class="model-input"><option value="quick">Quick</option><option value="balanced">Balanced</option><option value="deep">Deep</option></select></div></div><label class="setting-check"><input type="checkbox" id="saveSearchHistory"> Save search history on this device</label><div class="history-tools"><small>Saved questions stay in this browser.</small><button type="button" class="clear-history" id="clearSearchHistory">Clear history</button></div><label class="setting-check"><input type="checkbox" id="defineTerms"> Explain difficult terms briefly</label><label class="model-label" for="answerInstructions">Extra teaching instructions</label><textarea id="answerInstructions" class="model-input model-notes" maxlength="500" placeholder="Example: Define difficult words and give one simple example."></textarea><div class="model-actions"><button class="modal-add secondary" id="refreshModel">Check connection</button><button class="modal-add" id="saveModel">Save preferences</button></div><div class="privacy-note">Only your question, relevant text passages, and pages selected for image questions are sent to Ollama on this device. These preferences guide answers; they do not train the model weights.</div></div></div>
+  <script defer src="toxic-dark.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+

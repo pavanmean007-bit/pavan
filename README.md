@@ -1,17 +1,25 @@
-# TOXIC Evidence Intelligence
+# TOXIC — Multimodal Evidence Chat
 
-A static, browser-only prototype for multimodal evidence review. Open `index.html` locally or publish this folder with GitHub Pages.
+This is the original TOXIC dark evidence workspace from `toxic-dark.html`, published as both the root GitHub Pages page (`index.html`) and `/toxic-dark.html`.
 
-## Demo support
+## GitHub Pages
 
-- Extracts text from TXT, Markdown, CSV, TSV, JSON, XML, HTML, and log files.
-- Accepts PDFs, scanned images, and Office files as evidence items, but does not OCR or parse those binary formats in this prototype.
-- Demonstrates source-linked claims, heuristic conflict flags, and explicit abstention when evidence text is unavailable.
-- Keeps uploaded files in the browser session; no backend or model is connected.
+The public site loads the complete browser interface and bundled PDF, spreadsheet, and DOCX parsing libraries. Uploaded evidence is processed in the browser.
 
-## Publish with GitHub Pages
+GitHub Pages is static hosting. Generated AI answers require the included local `server.cjs` connected to Ollama on the same computer; that local AI service is not available to visitors of the public GitHub Pages URL. Without that service, the site falls back to evidence-only answers.
 
-Push this folder to a GitHub repository, then in **Settings → Pages**, choose **Deploy from a branch**, select `main` and `/ (root)`, and save. The `index.html` file is the site entry point.
+## Run locally with AI
 
-For real model answers, scanned-record OCR, PDF extraction, and office-document parsing, add a secure backend and connect appropriate model and extraction services. Do not put API keys in browser JavaScript.
+Install Node.js and Ollama, install an Ollama text model (and a vision model for image interpretation), then run:
 
+```sh
+node server.cjs
+```
+
+Open `http://127.0.0.1:8773/toxic-dark.html`. Choose the installed model in Settings if needed. The server only listens on the local computer.
+
+## Supported evidence
+
+PDF text and scanned pages, DOCX, TXT, Markdown, CSV, TSV, XLS/XLSX, JSON, PNG, JPEG, WebP, and TIFF. OCR may load Tesseract.js from a CDN; image interpretation requires a vision-capable local Ollama model.
+
+Third-party library notices are in `vendor/THIRD-PARTY-NOTICES.txt`.

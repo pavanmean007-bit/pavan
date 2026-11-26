@@ -1,0 +1,12 @@
+Third-party browser libraries bundled for local processing
+
+PDF.js 3.11.174 — Apache License 2.0
+https://github.com/mozilla/pdf.js/tree/v3.11.174
+
+fflate 0.8.2 — MIT License
+https://github.com/101arrowz/fflate
+
+SheetJS Community Edition 0.18.5 — Apache License 2.0
+https://github.com/SheetJS/sheetjs
+
+These scripts run in the browser for local document parsing. Toxic sends answer prompts and selected image pages only to Ollama on this computer.
